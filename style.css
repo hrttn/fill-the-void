@@ -1,0 +1,35 @@
+.main {
+    background-color: whitesmoke;
+}
+
+.buttons-list > li {
+    padding-bottom: 1px;
+} 
+
+.button {
+    border: none;
+    width: 85px;
+    height: 20px;
+    border: 1px solid darkgray;
+    border-radius: 3px;
+}
+
+.button--available {
+    background-color: lightgreen;
+    color: darkgreen;
+    cursor: pointer
+
+}
+
+.button--filled {
+    background-color: lightslategray;
+    color: white;
+    cursor: not-allowed
+
+}
+
+.button--unavailable {
+    background-color: lightslategray;
+    color: white;
+    cursor: not-allowed
+}
