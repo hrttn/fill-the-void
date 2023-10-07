@@ -1,17 +1,32 @@
 .main {
     background-color: whitesmoke;
+    max-width: 600px;
+    margin:auto;
+    padding: 0 5%;
+    font-family: sans-serif;
+}
+.next-random-number {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.buttons-list > li {
-    padding-bottom: 1px;
+.buttons-list {
+    display: grid;
+    grid-template-columns: repeat(4, 80px);
+  grid-template-rows: repeat(5, 80px);
+  width: 350px;
+  margin: auto;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
 } 
 
 .button {
     border: none;
-    width: 85px;
-    height: 20px;
     border: 1px solid darkgray;
     border-radius: 3px;
+    font-size: 28px;
+    transition:1s ease-out
 }
 
 .button--available {

@@ -110,9 +110,7 @@ function initButtons(){
         button.id = `button-${counter}`
         button.dataset.index = counter
         button.innerText = ""
-        let listItem = document.createElement("li")
-        listItem.appendChild(button)
-        buttonList.appendChild(listItem)
+        buttonList.appendChild(button)
     }
 }
 
@@ -132,8 +130,7 @@ function getNextRound() {
     nextNumber = getRandomNumber(alreadyDrawnNumbers)
 
     nextRandomNumberPlace.innerText = nextNumber
-
-    roundsPlayed.innerText = alreadyDrawnNumbers.length
+    roundsPlayed.innerText = alreadyDrawnNumbers.length - 1
 
     if(alreadyDrawnNumbers.length > 19){
         console.log('End Game')
