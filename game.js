@@ -93,9 +93,7 @@ function getRandomNumber(alreadyDrawnNumbers = []){
     if(canStillPlay){
         return randomNumber
     } else {
-        const main = document.getElementById('main')
-        console.log('loser')
-        main.style.backgroundColor = "red"
+        document.body.style.backgroundColor = "#9A3B3B"
         return randomNumber
     }
 

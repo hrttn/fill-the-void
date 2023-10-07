@@ -1,5 +1,8 @@
+body{
+    background-color: #FFEEF4;
+    transition: 2s ease;
+}
 .main {
-    background-color: whitesmoke;
     max-width: 600px;
     margin:auto;
     padding: 0 5%;
@@ -8,7 +11,8 @@
 .next-random-number {
     font-size: 48px;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 35px;
+    color: #252b1f
 }
 
 .buttons-list {
@@ -23,28 +27,26 @@
 
 .button {
     border: none;
-    border: 1px solid darkgray;
     border-radius: 3px;
     font-size: 28px;
-    transition:1s ease-out
+    transition:1s ease-out;
+    color: #252b1f;
+
 }
 
 .button--available {
-    background-color: lightgreen;
-    color: darkgreen;
+    background-color: #E4E4D0;
     cursor: pointer
 
 }
 
 .button--filled {
-    background-color: lightslategray;
-    color: white;
+    background-color: #AEC3AE;
     cursor: not-allowed
 
 }
 
 .button--unavailable {
-    background-color: lightslategray;
-    color: white;
+    background-color: #94A684;
     cursor: not-allowed
 }
