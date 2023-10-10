@@ -1,4 +1,4 @@
-const alreadyDrawnNumbers = [ 88, 19, 72, 75, 29, 66, 8, 55, 76 ]
+const alreadyDrawnNumbers = [ 45, 63, 55, 60, 19, 23, 98, 33, 75 ]
 
 const playedNumbers = []
 initGame()
@@ -89,6 +89,7 @@ function getRandomNumber(){
         return alreadyDrawnNumbers[playedNumbers.filter(nb=>!!nb).length]
     } else {
         document.body.style.backgroundColor = "#9A3B3B"
+        initGame()
         return alreadyDrawnNumbers[playedNumbers.filter(nb=>!!nb).length]
     }
 
@@ -96,20 +97,30 @@ function getRandomNumber(){
 
 function initButtons(){
     const buttonList = document.getElementById('buttonList')
-
+    buttonList.innerHTML = "";
+    document.body.style.backgroundColor = "#FFEEF4"
     for (let counter = 0; counter < 9; counter = counter + 1){
         let button = document.createElement("button")
         button.className = "button button-to-rank button--available"
         button.id = `button-${counter}`
         button.dataset.index = counter
         button.innerText = ""
+        button.addEventListener('click', () => {
+            if(button.innerText === ""){
+                button.innerText = nextNumber
+                button.disabled = true
+                button.className = "button button-to-rank button--filled"
+                playedNumbers.splice(button.dataset.index, 1 , nextNumber)
+                getNextRound()
+            } 
+        })
         buttonList.appendChild(button)
     }
 }
 
 function initTurns(){
     for (let counter = 0; counter < 9; counter = counter + 1){
-        playedNumbers.push(undefined)
+        playedNumbers[counter] = undefined
     }
 }
 
@@ -125,25 +136,6 @@ function getNextRound() {
     nextRandomNumberPlace.innerText = nextNumber
     roundsPlayed.innerText = alreadyDrawnNumbers.filter(nb=>!!nb).length - 1
 
-    if(alreadyDrawnNumbers.filter(nb=>!!nb).length > 8){
-        console.log('End Game')
-    }
+
 }
 
-//Everytime it is clicked we add teh current number
-// Do it with a slice
-
-[...document
-    .getElementsByClassName('button-to-rank')]
-    .forEach(button => {
-        button.addEventListener('click', () => {
-
-            if(button.innerText === ""){
-                button.innerText = nextNumber
-                button.disabled = true
-                button.className = "button button-to-rank button--filled"
-                playedNumbers.splice(button.dataset.index, 1 , nextNumber)
-                getNextRound()
-            } 
-        })
-    })
