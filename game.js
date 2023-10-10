@@ -1,4 +1,4 @@
-const alreadyDrawnNumbers = [ 88, 19, 72, 75, 29, 66, 8, 55, 75 ]
+const alreadyDrawnNumbers = [ 88, 19, 72, 75, 29, 66, 8, 55, 76 ]
 
 const playedNumbers = []
 initGame()
