@@ -17,12 +17,12 @@ body{
 
 .buttons-list {
     display: grid;
-    grid-template-columns: repeat(4, 80px);
-  grid-template-rows: repeat(5, 80px);
-  width: 350px;
-  margin: auto;
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+    width: 350px;
+    margin: auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
 } 
 
 .button {
@@ -31,7 +31,8 @@ body{
     font-size: 28px;
     transition:1s ease-out;
     color: #252b1f;
-
+    text-align: center;
+    font-weight: bold;
 }
 
 .button--available {

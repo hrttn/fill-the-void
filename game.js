@@ -1,9 +1,9 @@
-const alreadyDrawnNumbers = []
+const alreadyDrawnNumbers = [ 88, 19, 72, 75, 29, 66, 8, 55, 75 ]
+
 const playedNumbers = []
 initGame()
 
-let nextNumber = getRandomNumber(alreadyDrawnNumbers)
-
+let nextNumber = alreadyDrawnNumbers[playedNumbers.filter(nb=>!!nb).length]
 const nextRandomNumberPlace = document.getElementById('nextRandomNumber')
 nextRandomNumberPlace.innerText = nextNumber
 
@@ -14,7 +14,7 @@ const roundsPlayed = document.getElementById('numbersPlace')
 function checkAllOptions(randomNumber){
     let availableOptions = 0
 
-    let closestOver = 1001
+    let closestOver = 101
     let closestUnder = 0
 
     for (let i = 0; i < playedNumbers.length; i++){
@@ -79,22 +79,17 @@ function checkAllOptions(randomNumber){
             }
         }
     }
-    console.log({availableOptions})
+
     return availableOptions > 0
 }
 
-function getRandomNumber(alreadyDrawnNumbers = []){
-    const randomNumber = Math.floor(Math.random() * 1000) + 1
-    if(alreadyDrawnNumbers.includes(randomNumber)){
-        return getRandomNumber(alreadyDrawnNumbers)
-    }
-    const canStillPlay = checkAllOptions(randomNumber)
-    alreadyDrawnNumbers.push(randomNumber)
+function getRandomNumber(){
+    const canStillPlay = checkAllOptions(alreadyDrawnNumbers[playedNumbers.filter(nb=>!!nb).length])
     if(canStillPlay){
-        return randomNumber
+        return alreadyDrawnNumbers[playedNumbers.filter(nb=>!!nb).length]
     } else {
         document.body.style.backgroundColor = "#9A3B3B"
-        return randomNumber
+        return alreadyDrawnNumbers[playedNumbers.filter(nb=>!!nb).length]
     }
 
 }
@@ -102,7 +97,7 @@ function getRandomNumber(alreadyDrawnNumbers = []){
 function initButtons(){
     const buttonList = document.getElementById('buttonList')
 
-    for (let counter = 0; counter < 20; counter = counter + 1){
+    for (let counter = 0; counter < 9; counter = counter + 1){
         let button = document.createElement("button")
         button.className = "button button-to-rank button--available"
         button.id = `button-${counter}`
@@ -113,7 +108,7 @@ function initButtons(){
 }
 
 function initTurns(){
-    for (let counter = 0; counter < 20; counter = counter + 1){
+    for (let counter = 0; counter < 9; counter = counter + 1){
         playedNumbers.push(undefined)
     }
 }
@@ -125,12 +120,12 @@ function initGame(){
 
 
 function getNextRound() {
-    nextNumber = getRandomNumber(alreadyDrawnNumbers)
+    nextNumber = getRandomNumber()
 
     nextRandomNumberPlace.innerText = nextNumber
-    roundsPlayed.innerText = alreadyDrawnNumbers.length - 1
+    roundsPlayed.innerText = alreadyDrawnNumbers.filter(nb=>!!nb).length - 1
 
-    if(alreadyDrawnNumbers.length > 19){
+    if(alreadyDrawnNumbers.filter(nb=>!!nb).length > 8){
         console.log('End Game')
     }
 }
