@@ -477,11 +477,18 @@ async function getNextRound() {
 	const canStillPlay = checkAllOptions(nextNumber)
 
 	if (!canStillPlay) {
-		document.body.style.backgroundColor = "#9A3B3B"
-		document.getElementById(`turn-played-${game}`).innerText += "🟥"
-		await sleep(5000)
-		game = game + 1
-		initGame()
+		if (turn < 8) {
+			document.body.style.backgroundColor = "#9A3B3B"
+			document.getElementById(`turn-played-${game}`).innerText += "🟥"
+			await sleep(5000)
+			game = game + 1
+			initGame()
+		} else {
+			document.getElementById(
+				"number-to-place"
+			).innerText = `You won in ${game}!`
+			document.body.className = "winner"
+		}
 	} else {
 		document.getElementById(`turn-played-${game}`).innerText = "🟩".repeat(
 			turn
