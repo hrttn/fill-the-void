@@ -487,12 +487,17 @@ async function displayRefresh(){
 }
 
 async function getNextRound() {
-	turn = turn + 1
+    if((turn) % 3 === 0) {
+        document.getElementById(`turn-played-${game}`).innerText += "\u00a0"
+    }
+    document.getElementById(`turn-played-${game}`).innerText += "🟩"
+    turn = turn + 1
 	nextNumber = numbersToPlace[turn]
     await displayDrumRoll()
 	updateUi()
-	const canStillPlay = checkAllOptions(nextNumber)
 
+	const canStillPlay = checkAllOptions(nextNumber)
+ 
 	if (!canStillPlay) {
 		if (turn < 9) {
 			document.body.style.backgroundColor = "#9A3B3B"
@@ -506,11 +511,7 @@ async function getNextRound() {
 			).innerText = `You won in ${game}!`
 			document.body.className = "winner"
 		}
-	} else {
-		document.getElementById(`turn-played-${game}`).innerText = "🟩".repeat(
-			turn
-		)
-	}
+	} 
 }
 function initButtons() {
 	const buttonList = document.getElementById("buttonList")
