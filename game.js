@@ -478,6 +478,14 @@ async function displayDrumRoll(){
     }
 }
 
+async function displayRefresh(){
+    for (let i = 5; i > 0; i --){
+        document.getElementById('refresh-text').innerText = `Grid reset in ${i}...`
+        await sleep(1000)
+    }
+    document.getElementById('refresh-text').innerText = ""
+}
+
 async function getNextRound() {
 	turn = turn + 1
 	nextNumber = numbersToPlace[turn]
@@ -489,7 +497,7 @@ async function getNextRound() {
 		if (turn < 9) {
 			document.body.style.backgroundColor = "#9A3B3B"
 			document.getElementById(`turn-played-${game}`).innerText += "🟥"
-			await sleep(5000)
+			await displayRefresh()
 			game = game + 1
 			initGame()
 		} else {
