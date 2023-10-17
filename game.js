@@ -470,14 +470,23 @@ function checkAllOptions(randomNumber) {
 	return availableOptions > 0
 }
 
+async function displayDrumRoll(){
+    for(let i = 0; i < 10; i++) {
+        const randomNumber = Math.floor(Math.random() * 100) + 1
+        document.getElementById("number-to-place").innerText = randomNumber
+        await sleep(50)
+    }
+}
+
 async function getNextRound() {
 	turn = turn + 1
 	nextNumber = numbersToPlace[turn]
+    await displayDrumRoll()
 	updateUi()
 	const canStillPlay = checkAllOptions(nextNumber)
 
 	if (!canStillPlay) {
-		if (turn < 8) {
+		if (turn < 9) {
 			document.body.style.backgroundColor = "#9A3B3B"
 			document.getElementById(`turn-played-${game}`).innerText += "🟥"
 			await sleep(5000)
