@@ -1,13 +1,19 @@
-const alreadyDrawnNumbers = [60, 49, 1, 68, 23, 22, 84, 65, 77]
+const numbersToPlace = [60, 49, 1, 68, 23, 22, 84, 65, 77]
 
-const playedNumbers = []
+let playedNumbers = []
+let turn = 0
+let nextNumber
+
 initGame()
 
-let nextNumber = alreadyDrawnNumbers[playedNumbers.filter((nb) => !!nb).length]
-const nextRandomNumberPlace = document.getElementById("nextRandomNumber")
-nextRandomNumberPlace.innerText = nextNumber
+async function sleep(ms) {
+	return new Promise((resolve) => setTimeout(resolve, ms))
+}
 
-const roundsPlayed = document.getElementById("numbersPlace")
+function updateUi(){
+    document.getElementById("number-to-place").innerText = nextNumber
+    document.getElementById("turns-played").innerText = turn
+}
 
 function checkAllOptions(randomNumber) {
 	let availableOptions = 0
@@ -83,16 +89,17 @@ function checkAllOptions(randomNumber) {
 	return availableOptions > 0
 }
 
-function getRandomNumber() {
-	const canStillPlay = checkAllOptions(
-		alreadyDrawnNumbers[playedNumbers.filter((nb) => !!nb).length]
-	)
-	if (canStillPlay) {
-		return alreadyDrawnNumbers[playedNumbers.filter((nb) => !!nb).length]
-	} else {
+
+async function getNextRound() {
+	turn = turn + 1
+	nextNumber = numbersToPlace[turn]
+    updateUi()
+	const canStillPlay = checkAllOptions(nextNumber)
+    
+	if (!canStillPlay) {
 		document.body.style.backgroundColor = "#9A3B3B"
-		initGame()
-		return alreadyDrawnNumbers[playedNumbers.filter((nb) => !!nb).length]
+        await sleep(5000)
+        initGame()
 	}
 }
 
@@ -100,19 +107,20 @@ function initButtons() {
 	const buttonList = document.getElementById("buttonList")
 	buttonList.innerHTML = ""
 	document.body.style.backgroundColor = "#FFEEF4"
+
 	for (let counter = 0; counter < 9; counter = counter + 1) {
 		let button = document.createElement("button")
 		button.className = "button button-to-rank button--available"
 		button.id = `button-${counter}`
 		button.dataset.index = counter
 		button.innerText = ""
-		button.addEventListener("click", () => {
+		button.addEventListener("click", async () => {
 			if (button.innerText === "") {
 				button.innerText = nextNumber
 				button.disabled = true
 				button.className = "button button-to-rank button--filled"
 				playedNumbers.splice(button.dataset.index, 1, nextNumber)
-				getNextRound()
+				await getNextRound()
 			}
 		})
 		buttonList.appendChild(button)
@@ -120,6 +128,10 @@ function initButtons() {
 }
 
 function initTurns() {
+	turn = 0
+    nextNumber = numbersToPlace[turn]
+    updateUi()
+
 	for (let counter = 0; counter < 9; counter = counter + 1) {
 		playedNumbers[counter] = undefined
 	}
@@ -130,8 +142,3 @@ function initGame() {
 	initTurns()
 }
 
-function getNextRound() {
-	nextNumber = getRandomNumber()
-	nextRandomNumberPlace.innerText = nextNumber
-	roundsPlayed.innerText = alreadyDrawnNumbers.filter((nb) => !!nb).length - 1
-}
