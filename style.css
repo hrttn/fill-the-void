@@ -39,8 +39,6 @@ body.winner {
     width: 80px;
     height: 80px;
     margin: 35px auto;
-    display: grid;
-    align-content: center;
 }
 
 .buttons-list {
@@ -61,6 +59,9 @@ body.winner {
 	color: #252b1f;
 	text-align: center;
 	font-weight: bold;
+    display: grid;
+    align-content: center;
+    justify-content: center;
 }
 
 .button--available {
