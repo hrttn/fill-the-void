@@ -508,7 +508,10 @@ async function getNextRound() {
 		} else {
 			document.getElementById(
 				"number-to-place"
-			).innerText = `You won in ${game}!`
+			).style.display = "none"
+			document.getElementById(
+				"refresh-text"
+			).innerText = `Success in ${game}`
 			document.body.className = "winner"
 			document.getElementById(`turn-played-${game}`).innerText = "✅"
 		}

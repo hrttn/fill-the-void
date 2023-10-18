@@ -30,6 +30,10 @@ body.winner {
 	font-family: sans-serif;
 }
 
+.refresh-text {
+    text-align: center;
+}
+
 .button--top {
 	background: #aec3ae;
     width: 80px;
@@ -43,7 +47,7 @@ body.winner {
 	display: grid;
 	grid-template-columns: repeat(3, 80px);
 	grid-template-rows: repeat(3, 80px);
-	margin: auto;
+	margin: 75px auto;
 	grid-column-gap: 10px;
 	grid-row-gap: 10px;
 	justify-content: center;
