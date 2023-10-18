@@ -30,11 +30,13 @@ body.winner {
 	font-family: sans-serif;
 }
 
-.next-random-number {
-	font-size: 48px;
-	text-align: center;
-	margin-bottom: 35px;
-	color: #252b1f;
+.button--top {
+	background: #aec3ae;
+    width: 80px;
+    height: 80px;
+    margin: 35px auto;
+    display: grid;
+    align-content: center;
 }
 
 .buttons-list {
@@ -44,7 +46,7 @@ body.winner {
 	margin: auto;
 	grid-column-gap: 10px;
 	grid-row-gap: 10px;
-    justify-content: center;
+	justify-content: center;
 }
 
 .button {
