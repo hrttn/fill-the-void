@@ -385,8 +385,10 @@ function getDayNumber() {
 		60 /
 		60 /
 		1000
-	)
+	) 
 }
+
+const numberEmoji = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣","6️⃣", "7️⃣","8️⃣","9️⃣"]
 
 async function sleep(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms))
@@ -470,38 +472,36 @@ function checkAllOptions(randomNumber) {
 	return availableOptions > 0
 }
 
-async function displayDrumRoll(){
-    for(let i = 0; i < 10; i++) {
-        const randomNumber = Math.floor(Math.random() * 100) + 1
-        document.getElementById("number-to-place").innerText = randomNumber
-        await sleep(50)
-    }
+async function displayDrumRoll() {
+	for (let i = 0; i < 10; i++) {
+		const randomNumber = Math.floor(Math.random() * 100) + 1
+		document.getElementById("number-to-place").innerText = randomNumber
+		await sleep(50)
+	}
 }
 
-async function displayRefresh(){
-    for (let i = 5; i > 0; i --){
-        document.getElementById('refresh-text').innerText = `Grid reset in ${i}...`
-        await sleep(1000)
-    }
-    document.getElementById('refresh-text').innerText = ""
+async function displayRefresh() {
+	for (let i = 5; i > 0; i--) {
+		document.getElementById(
+			"refresh-text"
+		).innerText = `Grid reset in ${i}...`
+		await sleep(1000)
+	}
+	document.getElementById("refresh-text").innerText = ""
 }
 
 async function getNextRound() {
-    if((turn) % 3 === 0) {
-        document.getElementById(`turn-played-${game}`).innerText += "\u00a0"
-    }
-    document.getElementById(`turn-played-${game}`).innerText += "🟩"
-    turn = turn + 1
+	turn = turn + 1
 	nextNumber = numbersToPlace[turn]
-    await displayDrumRoll()
+	await displayDrumRoll()
 	updateUi()
 
 	const canStillPlay = checkAllOptions(nextNumber)
- 
+
 	if (!canStillPlay) {
 		if (turn < 9) {
+			document.getElementById(`turn-played-${game}`).innerText = numberEmoji[turn - 1]
 			document.body.style.backgroundColor = "#9A3B3B"
-			document.getElementById(`turn-played-${game}`).innerText += "🟥"
 			await displayRefresh()
 			game = game + 1
 			initGame()
@@ -510,8 +510,11 @@ async function getNextRound() {
 				"number-to-place"
 			).innerText = `You won in ${game}!`
 			document.body.className = "winner"
+			document.getElementById(`turn-played-${game}`).innerText = "✅"
 		}
-	} 
+	} else {
+		document.getElementById(`turn-played-${game}`).innerText = numberEmoji[turn]
+	}
 }
 function initButtons() {
 	const buttonList = document.getElementById("buttonList")
