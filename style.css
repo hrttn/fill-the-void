@@ -1,10 +1,10 @@
-body{
-    background-color: #FFEEF4;
-    transition: 2s ease;
+body {
+	background-color: #ffeef4;
+	transition: 2s ease;
 }
 
 body.winner {
-	background: linear-gradient(-45deg, #E4E4D0, #AEC3AE, #94A684);
+	background: linear-gradient(-45deg, #e4e4d0, #aec3ae, #94a684);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
 	height: 100vh;
@@ -23,52 +23,51 @@ body.winner {
 }
 
 .main {
-    max-width: 600px;
-    margin:auto;
-    padding: 0 5%;
-    font-family: sans-serif;
+	width: 90%;
+	max-width: 900px;
+	margin: auto;
+	padding: 0 5%;
+	font-family: sans-serif;
 }
 
 .next-random-number {
-    font-size: 48px;
-    text-align: center;
-    margin-bottom: 35px;
-    color: #252b1f
+	font-size: 48px;
+	text-align: center;
+	margin-bottom: 35px;
+	color: #252b1f;
 }
 
 .buttons-list {
-    display: grid;
-    grid-template-columns: repeat(3, 80px);
-    grid-template-rows: repeat(3, 80px);
-    width: 350px;
-    margin: auto;
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-} 
+	display: grid;
+	grid-template-columns: repeat(3, 80px);
+	grid-template-rows: repeat(3, 80px);
+	margin: auto;
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
+    justify-content: center;
+}
 
 .button {
-    border: none;
-    border-radius: 3px;
-    font-size: 28px;
-    transition:1s ease-out;
-    color: #252b1f;
-    text-align: center;
-    font-weight: bold;
+	border: none;
+	border-radius: 3px;
+	font-size: 28px;
+	transition: 1s ease-out;
+	color: #252b1f;
+	text-align: center;
+	font-weight: bold;
 }
 
 .button--available {
-    background-color: #E4E4D0;
-    cursor: pointer
-
+	background-color: #e4e4d0;
+	cursor: pointer;
 }
 
 .button--filled {
-    background-color: #AEC3AE;
-    cursor: not-allowed
-
+	background-color: #aec3ae;
+	cursor: not-allowed;
 }
 
 .button--unavailable {
-    background-color: #94A684;
-    cursor: not-allowed
+	background-color: #94a684;
+	cursor: not-allowed;
 }
